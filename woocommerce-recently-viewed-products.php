@@ -151,23 +151,7 @@ class WC_Recently_Viewed {
 	
 	public function woocommerce_recently_viewed_products_get_by_ip_address($ip_address) {
 		
-		$recently_viewed_products = get_option('woocommerce_recently_viewed_products');
-		
-		if(is_array($recently_viewed_products) && $recently_viewed_products) {
-			
-			if(isset($recently_viewed_products[$ip_address]) && $recently_view_products_by_user = $recently_viewed_products[$ip_address]) {
-				
-				return $recently_view_products_by_user;
-				
-			}
-			
-		}
-		
-		else {
-			
-			return false;
-			
-		}
+		return get_transient( 'woocommerce_recently_viewed_products_' . base64_encode($ip_address) );
 		
 	}
 	
@@ -211,7 +195,7 @@ class WC_Recently_Viewed {
 				
 				else {
 					
-					update_option('woocommerce_recently_viewed_products', array_merge(get_option('woocommerce_recently_viewed_products') ? get_option('woocommerce_recently_viewed_products') : array(), array($_SERVER['REMOTE_ADDR'] => $recently_viewed_products)));
+					set_transient( 'woocommerce_recently_viewed_products_' . base64_encode($_SERVER['REMOTE_ADDR']), $recently_viewed_products, 12 * HOUR_IN_SECONDS );
 					
 				}
 				

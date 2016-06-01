@@ -26,7 +26,7 @@ global $woocommerce_recently_viewed_products;
 		do_action( 'woocommerce_before_recently_viewed_products_loop' );
 	?>
 	
-	<h1 class="<?php echo implode(' ', apply_filters('woocommerce_before_recently_viewed_products_title_classes', array('title'))); ?>"><?php echo apply_filters('woocommerce_before_recently_viewed_products_title', __('Recently viewed by you', 'woocommerce-recently-viewed-products')); ?></h1>
+	<h2 class="<?php echo implode(' ', apply_filters('woocommerce_before_recently_viewed_products_title_classes', array('title'))); ?>"><?php echo apply_filters('woocommerce_before_recently_viewed_products_title', __('Recently viewed by you', 'woocommerce-recently-viewed-products')); ?></h2>
 	
 	<?php woocommerce_product_loop_start(); ?>
 	
