@@ -45,17 +45,10 @@ class WC_Recently_Viewed {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		
 		// Add Recently Viewed Products to Shop Page
-		add_action( 'woocommerce_after_main_content', array($this, 'woocommerce_recently_viewed_products') );
+		add_action( 'woocommerce_after_single_product_summary', array($this, 'woocommerce_recently_viewed_products') );
 		
 		// Tracking Product View
 		add_action( 'wp', array($this, 'woocommerce_recently_viewed_products_track_view') );
-		
-		// Before Recently View Loop
-		add_action('woocommerce_before_recently_viewed_products_loop', 'woocommerce_result_count', 20);
-		add_action('woocommerce_before_recently_viewed_products_loop', 'woocommerce_catalog_ordering', 30);
-		
-		// After Recently Viewed Loop
-		add_action('woocommerce_after_recently_viewed_products_loop', 'woocommerce_pagination');
 		
 	}
 	
@@ -115,15 +108,15 @@ class WC_Recently_Viewed {
 		
 		$recently_viewed_products = array(0);
 		
-		if(is_user_logged_in()) {
+		if( is_user_logged_in() ) {
 			
-			if($current_user->woocommerce_recently_viewed_products && is_array($current_user->woocommerce_recently_viewed_products)) {
+			if( $current_user->woocommerce_recently_viewed_products && is_array($current_user->woocommerce_recently_viewed_products) ) {
 				
 				$recently_viewed_products = $current_user->woocommerce_recently_viewed_products;
 				
 			}
 			
-			elseif($recently_viewed_products_by_ip_address = $this->woocommerce_recently_viewed_products_get_by_ip_address($_SERVER['REMOTE_ADDR'])) {
+			else if( $recently_viewed_products_by_ip_address = $this->woocommerce_recently_viewed_products_get_by_ip_address($_SERVER['REMOTE_ADDR']) ) {
 				
 				$recently_viewed_products = $recently_viewed_products_by_ip_address;
 				
@@ -131,7 +124,7 @@ class WC_Recently_Viewed {
 			
 		}
 		
-		elseif($recently_viewed_products_by_ip_address = $this->woocommerce_recently_viewed_products_get_by_ip_address($_SERVER['REMOTE_ADDR'])) {
+		else if( $recently_viewed_products_by_ip_address = $this->woocommerce_recently_viewed_products_get_by_ip_address($_SERVER['REMOTE_ADDR']) ) {
 			
 			$recently_viewed_products = $recently_viewed_products_by_ip_address;
 			
@@ -145,7 +138,7 @@ class WC_Recently_Viewed {
 		
 		$args = array();
 	
-		wc_get_template('content-recently-viewed-products.php', $args, false, $woocommerce_recently_viewed_products->plugin_path() . '/templates/');
+		wc_get_template( 'content-recently-viewed-products.php', $args, false, $woocommerce_recently_viewed_products->plugin_path() . '/templates/');
 		
 	}
 	
