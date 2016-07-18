@@ -24,11 +24,7 @@ global $woocommerce_recently_viewed_products;
 	
 	<?php while( have_posts() ) : the_post(); ?>
 	
-<<<<<<< HEAD
 		<?php wc_get_template( 'content-recently-viewed-product.php', array(), '', $woocommerce_recently_viewed_products->plugin_path() . '/templates/' ); ?>
-=======
-		<?php wc_get_template( 'content-recently-viewed-product.php', array(), $woocommerce_recently_viewed_products->plugin_path() . '/templates/' ); ?>
->>>>>>> master
 	
 	<?php endwhile; ?>
 	

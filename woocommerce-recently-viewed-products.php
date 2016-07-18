@@ -45,12 +45,8 @@ class WC_Recently_Viewed {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		
 		// Add Recently Viewed Products to Shop Page
-<<<<<<< HEAD
-		add_action( 'woocommerce_after_single_product_summary', array($this, 'woocommerce_recently_viewed_products'), 30 );
-=======
-		add_action( 'woocommerce_after_single_product_summary', array($this, 'woocommerce_recently_viewed_products') );
->>>>>>> master
-		
+		add_action( 'woocommerce_after_single_product_summary', array($this, 'woocommerce_recently_viewed_products'), 30 );	
+			
 		// Tracking Product View
 		add_action( 'wp', array($this, 'woocommerce_recently_viewed_products_track_view') );
 		
@@ -142,11 +138,7 @@ class WC_Recently_Viewed {
 		
 		query_posts($args);
 	
-<<<<<<< HEAD
 		wc_get_template( 'content-recently-viewed-products.php', array(), false, $woocommerce_recently_viewed_products->plugin_path() . '/templates/');
-=======
-		wc_get_template( 'content-recently-viewed-products.php', $args, false, $woocommerce_recently_viewed_products->plugin_path() . '/templates/');
->>>>>>> master
 		
 	}
 	
