@@ -22,23 +22,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if( ! function_exists('is_woocommerce_active') ) {
-	return;
-}
-
-// Check if WooCommerce is active
-if ( ! is_woocommerce_active() ) {
-	
-	return;
-	
-}
-
 
 class WC_Recently_Viewed {
 	
 	public $version 	= '1.0.0';
 	
 	public function __construct() {
+		
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		
+		// Check if WooCommerce is active
+		if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+			
+			return;
+			
+		}
 		
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_init', array( $this, 'activate' ) );
