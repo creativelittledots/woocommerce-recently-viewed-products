@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin Name: WooCommerce Recently Viewed Products
-* Description: Adds a section in your shop that displays a visitors recently viewed products.
+* Description: Adds a section in your Woocommerce shop to displays a visitors recently viewed Products; better than other plugins like this because its light, more modern and relies mostly on native Woocommerce functionality
 * Version: 1.0.0
 * Author: Creative Little Dots
 * Author URI: http://creativelittledots.co.uk
